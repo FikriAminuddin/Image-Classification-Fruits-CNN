@@ -2,7 +2,6 @@
 
 """
 eng : we are loading libraries
-tr : Kütüphaneleri yüklüyoruz
 """
 from keras.models import Sequential 
 from keras.layers import Conv2D, MaxPooling2D, Activation, Dropout, Flatten, Dense
@@ -10,19 +9,16 @@ from keras.preprocessing.image import ImageDataGenerator, img_to_array, load_img
 import matplotlib.pyplot as plt
 
 # eng : How many classes we have, we find this.
-# tr : Kaç tane sınıfımız var bunu buluyoruz.
 from glob import glob
 
 """
 eng : train - test path
-tr : train - test dosyalarımızın olduğu dosya yollarımız
 """
 train_path = "fruits-360/Training/" 
 test_path = "fruits-360/Test/"
 
 """
 eng : We visualize one of the pictures.
-tr : Resimlerden bir tanesini görselleştiriyoruz.
 """
 img = load_img(train_path + "Apple Braeburn/0_100.jpg")
 plt.imshow(img)
@@ -31,14 +27,12 @@ plt.show()
 
 """
 eng : from picture to series
-tr : resmi diziye çeviriyoruz
 """
 x = img_to_array(img) 
 print(x.shape) 
 
 """
 eng : we find out how many classes there are
-tr : kaç tane sınıfımız olduğunu buluyoruz
 """
 className = glob(train_path + '/*') 
 numberOfClass = len(className)
@@ -47,7 +41,6 @@ print("NumberOfClass: ",numberOfClass)
 #%% 
 """
 eng : create CNN model
-tr : cnn modelimizi oluşturuyoruz
 """
 
 # eng : 32 => number of filters
@@ -79,14 +72,12 @@ model.compile(loss = "categorical_crossentropy",
 
 """
 eng : We specify how many images we will use each time
-tr : Her seferde kaç resim kullanacağımızı beliritoyruz
 """
 batch_size = 32 
 
 #%%
 """
 eng : We are increasing the number of pictures for education.
-tr : Eğitim için resim sayımızı çoğaltıyoruz.
 """
 train_datagen = ImageDataGenerator(rescale= 1./255,
                    shear_range = 0.3, 
@@ -120,7 +111,6 @@ hist = model.fit_generator(
 #%% 
 """
 eng : model evaluation
-tr : sonuçlarımızı değerlendiriyoruz.
 """
 print(hist.history.keys())
 plt.plot(hist.history["loss"], label = "Train Loss")
